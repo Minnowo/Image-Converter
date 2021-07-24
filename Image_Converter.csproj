@@ -48,8 +48,14 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="ImageHelper.cs" />
+    <Compile Include="InternalSettings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebpWrapper\Enums.cs" />
+    <Compile Include="WebpWrapper\LibWebpStructs.cs" />
+    <Compile Include="WebpWrapper\UnsafeNativeMethods.cs" />
+    <Compile Include="WebpWrapper\Webp.cs" />
+    <Compile Include="WebpWrapper\WebpQuality.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
