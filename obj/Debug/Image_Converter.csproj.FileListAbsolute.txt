@@ -1,6 +1,0 @@
-X:\Languages\C#\Image_Converter\bin\Debug\Image_Converter.exe.config
-X:\Languages\C#\Image_Converter\bin\Debug\Image_Converter.exe
-X:\Languages\C#\Image_Converter\bin\Debug\Image_Converter.pdb
-X:\Languages\C#\Image_Converter\obj\Debug\Image_Converter.csproj.CoreCompileInputs.cache
-X:\Languages\C#\Image_Converter\obj\Debug\Image_Converter.exe
-X:\Languages\C#\Image_Converter\obj\Debug\Image_Converter.pdb

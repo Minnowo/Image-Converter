@@ -39,11 +39,13 @@ namespace Image_Converter
         {
             string convertTo = "png";
             string[] types = new string[] { "jpg", "png", "jpeg", "jpe", "jfij", "gif", "bmp", "tif", "tiff", "" };
+
             if (InternalSettings.WebP_Plugin_Exists)
                 types[9] = "webp";
 
             string dir = "";
             string filePath = "";
+            List<string> blacklist = new List<string>();
 
             if (args != null)
                 if (args.Length > 0)
@@ -75,14 +77,35 @@ namespace Image_Converter
                     }
                 }
             }
+            string tmp;
+            do
+            {
+                Console.WriteLine("do you want to blacklist  file extensions? (y/n)");
+                tmp = Console.ReadLine();
+            } while (tmp != "y" && tmp != "n");
 
+            if (tmp == "y")
+            {
+                while (true)
+                {
+                    Console.Clear();
+                    Console.WriteLine("enter file extensions to black list (/c to continue) DO NOT include the dot (example: jpg)");
+                    Console.WriteLine("current blacklsit: [ " + string.Join(", ", blacklist) + " ]");
+                    string ext = Console.ReadLine().ToLower().Trim();
+                    
+                    if (ext == "/c")
+                        break;
+
+                    blacklist.Add(ext);
+                }
+            }
             
             while (true)
             {
                 if (InternalSettings.WebP_Plugin_Exists)
-                    Console.WriteLine("convert to?  png jpg jpeg gif bmp tif tiff webp");
+                    Console.WriteLine("convert to?  png jpg gif bmp tif tiff webp");
                 else
-                    Console.WriteLine("convert to?  png jpg jpeg gif bmp tif tiff");
+                    Console.WriteLine("convert to?  png jpg gif bmp tif tiff");
 
                 convertTo = Console.ReadLine().Trim().ToLower();
 
@@ -154,6 +177,8 @@ namespace Image_Converter
                     List<string> files = new DirectoryInfo(dir).EnumerateFiles(".", SearchOption.TopDirectoryOnly).Select(x => x.Name).ToList();
                     foreach (string file in files)
                     {
+                        if (blacklist.Contains(Helpers.GetFilenameExtension(file)))
+                            continue;
                         ConvertImage(Path.Combine(dir, file), ImageHelper.GetPathImageFormat("." + convertTo));
                     }
                     break ;
